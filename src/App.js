@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './index.scss';
 
 const questions = [
@@ -32,26 +34,35 @@ function Result() {
   );
 }
 
-function Game() {
+function Game({ question, onClickVariant }) {
   return (
     <>
       <div className="progress">
         <div style={{ width: '50%' }} className="progress__inner"></div>
       </div>
-      <h1>Что такое useState?</h1>
+      <h1>{question.title}</h1>
       <ul>
-        <li>Это функция для хранения данных компонента</li>
-        <li>Это глобальный стейт</li>
-        <li>Это когда на ты никому не нужен</li>
+        {question.variants.map((text, i) => (
+          <li onClick={() => onClickVariant(i)} key={text}>
+            {text}
+          </li>
+        ))}
       </ul>
     </>
   );
 }
 
 function App() {
+  const [step, setStep] = React.useState(0);
+  const question = questions[step];
+
+  const onClickVariant = (i) => {
+    setStep(step + 1);
+  };
+
   return (
     <div className="App">
-      <Game />
+      <Game question={question} onClickVariant={onClickVariant} />
       {/* <Result /> */}
     </div>
   );
