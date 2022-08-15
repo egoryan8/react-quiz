@@ -29,7 +29,10 @@ function Result({ correct }) {
     <div className="result">
       <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" />
       <h2>
-        Вы отгадали {correct} ответа из {questions.length}
+        ВАШ РЕЗУЛЬТАТ:
+        <p>
+          Верно {correct} из {questions.length} вопросов
+        </p>
       </h2>
 
       <a href="/">
