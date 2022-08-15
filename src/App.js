@@ -31,7 +31,10 @@ function Result({ correct }) {
       <h2>
         Вы отгадали {correct} ответа из {questions.length}
       </h2>
-      <button>Попробовать снова</button>
+
+      <a href="/">
+        <button>Попробовать снова</button>
+      </a>
     </div>
   );
 }
@@ -64,8 +67,7 @@ function App() {
 
   const onClickVariant = (i) => {
     setStep(step + 1);
-
-    if (questions.correct === i) {
+    if (i === question.correct) {
       setCorrect(correct + 1);
     }
   };
