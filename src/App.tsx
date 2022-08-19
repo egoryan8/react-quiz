@@ -23,8 +23,11 @@ const questions = [
     correct: 2,
   },
 ];
+type ResultPropsType = {
+  correct: number;
+};
 
-function Result({ correct }) {
+const Result: React.FC<ResultPropsType> = ({ correct }) => {
   return (
     <div className="result">
       <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" />
@@ -40,9 +43,20 @@ function Result({ correct }) {
       </a>
     </div>
   );
-}
+};
 
-function Game({ step, question, onClickVariant }) {
+type QuestionType = {
+  title: string;
+  variants: string[];
+  correct: number;
+};
+
+type GamePropsType = {
+  step: number;
+  question: QuestionType;
+  onClickVariant: (index: number) => void;
+};
+const Game: React.FC<GamePropsType> = ({ step, question, onClickVariant }) => {
   const percentage = Math.round((step / questions.length) * 100);
 
   return (
@@ -60,7 +74,7 @@ function Game({ step, question, onClickVariant }) {
       </ul>
     </>
   );
-}
+};
 
 function App() {
   const [step, setStep] = React.useState(0);
@@ -68,7 +82,7 @@ function App() {
 
   const question = questions[step];
 
-  const onClickVariant = (i) => {
+  const onClickVariant = (i: number) => {
     setStep(step + 1);
     if (i === question.correct) {
       setCorrect(correct + 1);
